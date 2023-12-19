@@ -58,7 +58,6 @@
 import Filter from '../components/Filter'
 import { useEffect, useState } from 'react'
 import themealdb from '../utils/api/themealdb'
-import { Link } from 'react-router-dom'
 import Polaroid from '../components/Polaroid'
 
 const Home = () => {
@@ -81,10 +80,7 @@ const Home = () => {
 		 * @returns
 		 */
 		(meal) => (
-			<Link key={meal.idMeal} to={`/recipe/${meal.idMeal}`} state={meal}>
-				<img src={meal.strMealThumb} />
-				<span>{meal.strMeal}</span>
-			</Link>
+			<Polaroid key={meal.idMeal} id={meal.idMeal} thumbnail={meal.strMealThumb} name={meal.strMeal} area={meal.strArea}/> 
 		)
 	)
 
