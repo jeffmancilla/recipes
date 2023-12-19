@@ -3,14 +3,13 @@ const Filter = (props) => {
         console.log(e.target.value)
         props.setQuery(e.target.value)
     }
-	// const categoryCheckbox = props.categories?.map((category, idx) => (<span key={idx}>x{category}</span>))
+	const categoryCheckbox = props.categories?.map((category, idx) => (<label key={idx}><input type="checkbox" id={category.strCategory} />{category.strCategory}</label>))
 	return (
 		<section className="Filter">
 			<h1>Cook your next meal.</h1>
 			<search>
 				<input onChange={(e)=>handleChange(e)} type="search" placeholder="search" value={props.query}></input>
-				{/* <div>{ categoryCheckbox }</div> */}
-				{/* <div>{ props.categories[0].strCategory }</div> */}
+				<div>{ categoryCheckbox }</div>
 			</search>
 		</section>
 	)

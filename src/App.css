@@ -42,4 +42,25 @@
 
 .Filter {
 	text-align: center;
+
+}
+
+.results {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2rem;
+	
+	& > * {
+		text-decoration: none;
+		box-shadow: 1px 1px 4px color-mix(in srgb, black 50%, transparent);
+		color: var(--dark);
+		background: var(--light);
+		width: 200px;
+		display: flex;
+		flex-direction: column;
+
+		& > * {
+
+		}
+	}
 }

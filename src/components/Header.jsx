@@ -4,7 +4,7 @@ const Header = () => {
 
     return(
         <header>
-            <div>Cooking</div>
+            <div>Recipes</div>
             <nav>
                 <ul>
                     <li>

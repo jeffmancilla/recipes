@@ -7,7 +7,6 @@ const fetchData = async (params) => {
             throw new Error (`Error (${response.status}): ${response.statusText}`)
         }
         const data = await response.json()
-        console.log(data)
         return data
     } catch (err) {
         console.log(err)
@@ -15,12 +14,18 @@ const fetchData = async (params) => {
 }
 
 export default {
-    search: (query, cb) => {
-        const data = fetchData(`/search.php?s=${query}`)
+    search: async (query, cb) => {
+        const data = await fetchData(`/search.php?s=${query}`)
         return cb(data.meals)
     },
-    getCategories: (cb) => {
-        const data = fetchData(`/list.php?c=list`)
+    getCategories: async (cb) => {
+        const data = await fetchData(`/list.php?c=list`)
+        console.log(data)
+        return cb(data.meals)
+    },
+    getAres: async (cb) => {
+        const data = await fetchData(`/list.php?a=list`)
+        console.log(data)
         return cb(data.meals)
     }
 }
