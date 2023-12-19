@@ -1,0 +1,29 @@
+#root {
+  width: min(90vw, 80ch);
+  height: 100lvh;
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+
+  & header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & nav > ul {
+      list-style: none;
+      padding-left: 0;
+    }
+  }
+
+  & main {
+    flex-grow: 1;
+  }
+  & footer {
+    align-self: center;
+    opacity: .5;
+  }
+}
