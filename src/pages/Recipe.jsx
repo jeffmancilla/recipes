@@ -70,9 +70,6 @@ const Recipe = () => {
 	 * @type {[Meal, Function]}
 	 */
 	const [meal, setMeal] = useState({})
-	/**
-	 * @type {[Ingredients, Function]}
-	 */
 	const [ingredients, setIngredients] = useState([])
 	const { id } = useParams()
 
@@ -90,14 +87,14 @@ const Recipe = () => {
 			</section>
 			<section>
 				<h2>Ingredients</h2>
-				<ul className='Ingredients'>
-					{ingredients?.map((ingredient, idx) => 
-						(<li key={idx}>
-							<span>{ingredient.name}</span>
-							<span>{ingredient.measure}</span>
-						</li>)
-					)}
-				</ul>
+				{ingredients?.map((ingredient, idx) => (
+					<div key={idx}>
+						<label htmlFor={`ingredient${idx}`}>
+							<input  type="checkbox" id={`ingredient${idx}`} />
+							{ingredient.measure} {ingredient.name}
+						</label>
+					</div>
+				))}
 			</section>
 			<section>
 				<h2>Instructions</h2>
