@@ -14,16 +14,20 @@ const fetchData = async (params) => {
 }
 
 export default {
-    search: async (query, cb) => {
+    searchMeals: async (query, cb) => {
         const data = await fetchData(`/search.php?s=${query}`)
         return cb(data.meals)
+    },
+    findMeal: async (id, cb) => {
+        const data = await fetchData(`/lookup.php?i=${id}`)
+         return cb(data.meals[0])
     },
     getCategories: async (cb) => {
         const data = await fetchData(`/list.php?c=list`)
         console.log(data)
         return cb(data.meals)
     },
-    getAres: async (cb) => {
+    getAreas: async (cb) => {
         const data = await fetchData(`/list.php?a=list`)
         console.log(data)
         return cb(data.meals)

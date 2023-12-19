@@ -59,28 +59,29 @@ import Filter from '../components/Filter'
 import { useEffect, useState } from 'react'
 import themealdb from '../utils/api/themealdb'
 import { Link } from 'react-router-dom'
+import Polaroid from '../components/Polaroid'
 
 const Home = () => {
 	const [meals, setMeals] = useState([])
 	const [categories, setCategories] = useState([])
-	const [query, setQuery] = useState('chicken')
+	const [query, setQuery] = useState('')
 
 	useEffect(() => {
 		themealdb.getCategories(setCategories)
 	}, [])
 
 	useEffect(() => {
-		themealdb.search(query, setMeals)
+		themealdb.searchMeals(query, setMeals)
 	}, [query])
-	console.log(meals)
-	const mealResults = meals?.map(
+
+	const renderResults = meals.map(
 		/**
 		 *
 		 * @param {Meal} meal
 		 * @returns
 		 */
 		(meal) => (
-			<Link key={meal.idMeal} to={`/recipe/${meal.idMeal}`}>
+			<Link key={meal.idMeal} to={`/recipe/${meal.idMeal}`} state={meal}>
 				<img src={meal.strMealThumb} />
 				<span>{meal.strMeal}</span>
 			</Link>
@@ -90,7 +91,9 @@ const Home = () => {
 	return (
 		<>
 			<Filter categories={categories} query={query} setQuery={setQuery} />
-			<section className="results">{meals ? mealResults : 'loading'}</section>
+			<section className="results">
+				{meals.length ? renderResults : 'loading'}
+			</section>
 		</>
 	)
 }
