@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom"
 
 const Header = () => {
+
     return(
         <header>
+            <div>Cooking</div>
             <nav>
                 <ul>
                     <li>
@@ -10,9 +12,6 @@ const Header = () => {
                     </li>
                 </ul>
             </nav>
-            <div>
-                <input type="search" placeholder="search"></input>
-            </div>
         </header>
     )
 }

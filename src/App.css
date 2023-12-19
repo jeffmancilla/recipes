@@ -1,33 +1,45 @@
 #root {
-  width: min(90vw, 80ch);
-  height: 100lvh;
-  margin: auto;
+	width: min(90vw, 80ch);
+	height: 100lvh;
+	margin: auto;
 
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 1rem;
 
-  & header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	& header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		& div:first-of-type {
+			font-weight: 600;
+		}
 
-    & nav > ul {
-      list-style: none;
-      padding-left: 0;
+		& nav > ul {
+			list-style: none;
+			padding-left: 0;
 
-      & a {
-        color: var(--)
-      }
-    }
-  }
+			& a {
+				color: var(--text);
+				text-decoration: none;
+				opacity: 0.8;
+				&:hover {
+					opacity: 1;
+				}
+			}
+		}
+	}
 
-  & main {
-    flex-grow: 1;
-  }
-  & footer {
-    align-self: center;
-    opacity: .5;
-  }
+	& main {
+		flex-grow: 1;
+	}
+	& footer {
+		align-self: center;
+		opacity: 0.5;
+	}
+}
+
+.Filter {
+	text-align: center;
 }
