@@ -26,11 +26,12 @@ export default {
         // ingredients
         const ingredients = []
         for (const key in result) {
+            const ingredientKey = 'strIngredient'
             // iterate through object, looking for ingredient keys that have values
-            if (key.startsWith('strIngredient') && result[key]) {
+            if (key.startsWith(ingredientKey) && result[key]) {
                 // store the number at the end of this key so we can grab the ingredient's respective measure
-                const count = key.substring(13)
-                ingredients.push({ name: result[key], measure: result[`strMeasure${count}`] })
+                const measureKey = `strMeasure${key.substring(ingredientKey.length)}`
+                ingredients.push({ name: result[key], measure: result[measureKey] })
             }
         }
         ingredientsCB(ingredients)
