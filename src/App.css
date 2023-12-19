@@ -12,18 +12,21 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		& div:first-of-type {
-			font-weight: 600;
-		}
-
+		
 		& nav > ul {
 			list-style: none;
 			padding-left: 0;
 
+			display: flex;
+			gap: 1rem;
+			
 			& a {
 				color: var(--text);
 				text-decoration: none;
 				opacity: 0.8;
+				&:first-of-type {
+					font-weight: 600;
+				}
 				&:hover {
 					opacity: 1;
 				}

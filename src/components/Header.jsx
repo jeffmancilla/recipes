@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom"
 
 const Header = () => {
-
     return(
         <header>
-            <div>Recipes</div>
             <nav>
                 <ul>
                     <li>
-                        <Link to='/'>Home</Link>
+                        <Link to='/'>Recipes</Link>
+                    </li>
+                    <li>
+                        Categories
+                    </li>
+                    <li>
+                        Cuisine
                     </li>
                 </ul>
             </nav>

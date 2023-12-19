@@ -73,7 +73,7 @@ const Home = () => {
 		themealdb.searchMeals(query, setMeals)
 	}, [query])
 
-	const renderResults = meals.map(
+	const renderResults = meals?.map(
 		/**
 		 *
 		 * @param {Meal} meal
@@ -88,7 +88,7 @@ const Home = () => {
 		<>
 			<Filter categories={categories} query={query} setQuery={setQuery} />
 			<section className="results">
-				{meals.length ? renderResults : 'loading'}
+				{Array.isArray(meals) ? renderResults : 'no results found'}
 			</section>
 		</>
 	)
