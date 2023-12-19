@@ -55,6 +55,12 @@
  * @property {string=} strYoutube: "https://www.youtube.com/watch?v=fFLn1h80AGQ"
  */
 
+/**
+ * @typedef {Object} Ingredients
+ * @property {string} name
+ * @property {string} measure
+ */
+
 import { useParams } from 'react-router-dom'
 import theMealDB from '../utils/api/themealdb'
 import { useState, useEffect } from 'react'
@@ -64,10 +70,14 @@ const Recipe = () => {
 	 * @type {[Meal, Function]}
 	 */
 	const [meal, setMeal] = useState({})
+	/**
+	 * @type {[Ingredients, Function]}
+	 */
+	const [ingredients, setIngredients] = useState([])
 	const { id } = useParams()
 
 	useEffect(() => {
-		theMealDB.findMeal(id, setMeal)
+		theMealDB.findMeal(id, setMeal, setIngredients)
 	}, [id])
 
 	return (
@@ -80,6 +90,14 @@ const Recipe = () => {
 			</section>
 			<section>
 				<h2>Ingredients</h2>
+				<ul className='Ingredients'>
+					{ingredients?.map((ingredient, idx) => 
+						(<li key={idx}>
+							<span>{ingredient.name}</span>
+							<span>{ingredient.measure}</span>
+						</li>)
+					)}
+				</ul>
 			</section>
 			<section>
 				<h2>Instructions</h2>

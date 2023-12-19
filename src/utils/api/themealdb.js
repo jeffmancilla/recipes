@@ -18,9 +18,24 @@ export default {
         const data = await fetchData(`/search.php?s=${query}`)
         return cb(data.meals)
     },
-    findMeal: async (id, cb) => {
+    findMeal: async (id, detailsCB, ingredientsCB) => {
         const data = await fetchData(`/lookup.php?i=${id}`)
-         return cb(data.meals[0])
+        console.log(data)
+        const result = data.meals[0]
+        detailsCB(result)
+        // ingredients
+        const ingredients = []
+        for (const key in result) {
+            // iterate through object, looking for ingredient keys that have values
+            if (key.startsWith('strIngredient') && result[key]) {
+                // store the number at the end of this key so we can grab the ingredient's respective measure
+                const count = key.substring(13)
+                ingredients.push({ name: result[key], measure: result[`strMeasure${count}`] })
+            }
+        }
+        ingredientsCB(ingredients)
+        console.log(ingredients)
+        return
     },
     getCategories: async (cb) => {
         const data = await fetchData(`/list.php?c=list`)
