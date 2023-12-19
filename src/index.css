@@ -1,18 +1,29 @@
 :root {
-	--light: #ffffff99;
+	--light: #ffffffbb;
 	--dark: #222222;
+  
+	--classical-humanist: Optima, Candara, 'Noto Sans', source-sans-pro,
+  sans-serif;
 
-  --classical-humanist: Optima, Candara, 'Noto Sans', source-sans-pro, sans-serif;
+  --text: var(--light);
+  --background: var(--dark);
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		--text: var(--dark);
+		--background: var(--light);
+	}
 }
 
 html {
+	color: var(--text);
+	background-color: var(--background);
 	font-family: var(--classical-humanist);
+
 	line-height: 1.5;
 
 	color-scheme: light dark;
-
-	color: var(--light);
-	background-color: var(--dark);
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -20,9 +31,4 @@ html {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-@media (prefers-color-scheme: light) {
-	html {
-		color: var(--dark);
-		background-color: var(--light);
-	}
-}
+
