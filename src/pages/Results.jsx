@@ -68,17 +68,17 @@ const Results = () => {
 	let { pathname } = useLocation()
 
 	useEffect(() => {
-		setFilter('')
 		switch (pathname) {
 			case `/cuisine/${param}`:
 				themealdb.filterByArea(param, setMeals)
 				break
 			case `/category/${param}`:
-				themealdb.filterByCategory(param, setMeals)
+				themealdb.filterByCategory(param, setMeals, setFilter)
 				break
 			default:
 				console.log('no cases met')
 		}
+		// setFilter('')
 	}, [pathname, param])
 
 	const handleChange = (e) => {
@@ -119,7 +119,6 @@ const Results = () => {
 					/>
 				</search>
 			</section>
-			{/* <Filter categories={categories} query={query} setQuery={setQuery} /> */}
 			<section className="results">
 				{Array.isArray(meals) ? renderResults : 'no results found'}
 			</section>

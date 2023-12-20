@@ -77,25 +77,44 @@ const Recipe = () => {
 		theMealDB.lookupMeal(id, setMeal, setIngredients)
 	}, [id])
 
+	const renderYTEmbed = () => {
+		console.log(meal.strYoutube)
+		let embedCode = meal.strYoutube.split('v=')[1]
+		console.log(`https://www.youtube.com/embed/_${embedCode}`)
+		return (
+			<iframe
+				width="560"
+				height="315"
+				src={`https://www.youtube.com/embed/${embedCode}`}
+				title="YouTube video player"
+				// frameBorder is deprecated, rip
+				frameborder="0"
+				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+				allowFullScreen
+			></iframe>
+		)
+	}
+
 	return (
 		<div className="Recipe">
 			<section>
 				<h1>{meal.strMeal}</h1>
 				<img src={meal.strMealThumb} />
+				{/* worth doing pills for these meal tags? data isnt very consistent with giving quality or a value for that matter :(  */}
 				<span>{meal.strTags}</span>
-				{/* youtube embed */}
 			</section>
 			<section>
 				<h2>Ingredients</h2>
 				{ingredients?.map((ingredient, idx) => (
 					<div key={idx}>
 						<label htmlFor={`ingredient${idx}`}>
-							<input  type="checkbox" id={`ingredient${idx}`} />
+							<input type="checkbox" id={`ingredient${idx}`} />
 							{ingredient.measure} {ingredient.name}
 						</label>
 					</div>
 				))}
 			</section>
+			<section>{meal.strYoutube ? renderYTEmbed() : null}</section>
 			<section>
 				<h2>Instructions</h2>
 				<p>{meal.strInstructions}</p>
@@ -105,7 +124,3 @@ const Recipe = () => {
 }
 
 export default Recipe
-
-{
-	/* <iframe width="560" height="315" src={`https://www.youtube.com/embed/${meal?.strYoutube.slice(32)}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> */
-}
