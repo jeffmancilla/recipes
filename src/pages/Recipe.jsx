@@ -74,7 +74,7 @@ const Recipe = () => {
 	const { id } = useParams()
 
 	useEffect(() => {
-		theMealDB.findMeal(id, setMeal, setIngredients)
+		theMealDB.lookupMeal(id, setMeal, setIngredients)
 	}, [id])
 
 	return (

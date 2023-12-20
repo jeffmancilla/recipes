@@ -58,35 +58,36 @@
 import { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import themealdb from '../utils/api/themealdb'
-import Filter from '../components/Filter'
+// import Filter from '../components/Filter'
 import Polaroid from '../components/Polaroid'
 
 const Results = () => {
 	const [meals, setMeals] = useState([])
-	const [categories, setCategories] = useState([])
-	const [query, setQuery] = useState('')
-	const param = useParams()
+	// const [categories, setCategories] = useState([])
+	// const [query, setQuery] = useState('')
+	const {param} = useParams()
 
-	let location = useLocation()
+	let {pathname} = useLocation()
 
 	useEffect(() => {
-		console.log(location.pathname)
-		switch (location.pathname) {
-			case `/cuisine/${param.param}`:
+		console.log(pathname)
+		switch (pathname) {
+			case `/cuisine/${param}`:
 				console.log('cuisine')
+				themealdb.filterByArea(param, setMeals)
 				break
-			case `/category/${param.param}`:
+			case `/category/${param}`:
 				console.log('category')
+				themealdb.filterByCategory(param, setMeals)
 				break
 			default:
 				console.log('no cases met')
 		}
-		themealdb.getCategories(setCategories)
-	}, [location.pathname])
+	}, [pathname, param])
 
-	useEffect(() => {
-		themealdb.searchMeals(query, setMeals)
-	}, [query])
+	// useEffect(() => {
+	// 	themealdb.searchMeals(query, setMeals)
+	// }, [query])
 
 	const renderResults = meals?.map(
 		/**
@@ -107,7 +108,7 @@ const Results = () => {
 
 	return (
 		<div className="Home">
-			<Filter categories={categories} query={query} setQuery={setQuery} />
+			{/* <Filter categories={categories} query={query} setQuery={setQuery} /> */}
 			<section className="results">
 				{Array.isArray(meals) ? renderResults : 'no results found'}
 			</section>

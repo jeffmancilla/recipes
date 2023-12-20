@@ -5,9 +5,10 @@ import themealdb from '../utils/api/themealdb'
 const Header = () => {
 	const [categories, setCategories] = useState([])
 	const [areas, setAreas] = useState([])
+	
 	useEffect(() => {
-		themealdb.getCategories(setCategories)
-		themealdb.getAreas(setAreas)
+		themealdb.listCategories(setCategories)
+		themealdb.listAreas(setAreas)
 	}, [])
 
 	const categoryLinks = categories?.map((category, idx) => (
