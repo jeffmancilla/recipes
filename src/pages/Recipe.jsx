@@ -61,9 +61,9 @@
  * @property {string} measure
  */
 
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import theMealDB from '../utils/api/themealdb'
-import { useState, useEffect } from 'react'
 
 const Recipe = () => {
 	/**
@@ -78,7 +78,7 @@ const Recipe = () => {
 	}, [id])
 
 	return (
-		<article>
+		<div className="Recipe">
 			<section>
 				<h1>{meal.strMeal}</h1>
 				<img src={meal.strMealThumb} />
@@ -100,7 +100,7 @@ const Recipe = () => {
 				<h2>Instructions</h2>
 				<p>{meal.strInstructions}</p>
 			</section>
-		</article>
+		</div>
 	)
 }
 

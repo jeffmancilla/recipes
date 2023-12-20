@@ -55,19 +55,34 @@
  * @property {string=} strYoutube: "https://www.youtube.com/watch?v=fFLn1h80AGQ"
  */
 
-import Filter from '../components/Filter'
 import { useEffect, useState } from 'react'
+import { useLocation, useParams } from 'react-router-dom'
 import themealdb from '../utils/api/themealdb'
+import Filter from '../components/Filter'
 import Polaroid from '../components/Polaroid'
 
-const Home = () => {
+const Results = () => {
 	const [meals, setMeals] = useState([])
 	const [categories, setCategories] = useState([])
 	const [query, setQuery] = useState('')
+	const param = useParams()
+
+	let location = useLocation()
 
 	useEffect(() => {
+		console.log(location.pathname)
+		switch (location.pathname) {
+			case `/cuisine/${param.param}`:
+				console.log('cuisine')
+				break
+			case `/category/${param.param}`:
+				console.log('category')
+				break
+			default:
+				console.log('no cases met')
+		}
 		themealdb.getCategories(setCategories)
-	}, [])
+	}, [location.pathname])
 
 	useEffect(() => {
 		themealdb.searchMeals(query, setMeals)
@@ -80,18 +95,24 @@ const Home = () => {
 		 * @returns
 		 */
 		(meal) => (
-			<Polaroid key={meal.idMeal} id={meal.idMeal} thumbnail={meal.strMealThumb} name={meal.strMeal} area={meal.strArea}/> 
+			<Polaroid
+				key={meal.idMeal}
+				id={meal.idMeal}
+				thumbnail={meal.strMealThumb}
+				name={meal.strMeal}
+				area={meal.strArea}
+			/>
 		)
 	)
 
 	return (
-		<>
+		<div className="Home">
 			<Filter categories={categories} query={query} setQuery={setQuery} />
 			<section className="results">
 				{Array.isArray(meals) ? renderResults : 'no results found'}
 			</section>
-		</>
+		</div>
 	)
 }
 
-export default Home
+export default Results
