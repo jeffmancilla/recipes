@@ -55,43 +55,76 @@
  * @property {string=} strYoutube: "https://www.youtube.com/watch?v=fFLn1h80AGQ"
  */
 
-import Filter from '../components/Filter'
 import { useEffect, useState } from 'react'
+import { useLocation, useParams } from 'react-router-dom'
 import themealdb from '../utils/api/themealdb'
 import Polaroid from '../components/Polaroid'
 
-const Home = () => {
+const Results = () => {
 	const [meals, setMeals] = useState([])
-	const [categories, setCategories] = useState([])
-	const [query, setQuery] = useState('')
+	const [filter, setFilter] = useState('')
+	const { param } = useParams()
+
+	let { pathname } = useLocation()
 
 	useEffect(() => {
-		themealdb.getCategories(setCategories)
-	}, [])
+		setFilter('')
+		switch (pathname) {
+			case `/cuisine/${param}`:
+				themealdb.filterByArea(param, setMeals)
+				break
+			case `/category/${param}`:
+				themealdb.filterByCategory(param, setMeals)
+				break
+			default:
+				console.log('no cases met')
+		}
+	}, [pathname, param])
 
-	useEffect(() => {
-		themealdb.searchMeals(query, setMeals)
-	}, [query])
+	const handleChange = (e) => {
+		setFilter(e.target.value)
+	}
 
-	const renderResults = meals.map(
+	const renderResults = meals?.map(
 		/**
 		 *
 		 * @param {Meal} meal
 		 * @returns
 		 */
-		(meal) => (
-			<Polaroid key={meal.idMeal} id={meal.idMeal} thumbnail={meal.strMealThumb} name={meal.strMeal} area={meal.strArea}/> 
-		)
+		(meal) => {
+			if (meal.strMeal.toLowerCase().includes(filter.toLowerCase())) {
+				return (
+					<Polaroid
+						key={meal.idMeal}
+						id={meal.idMeal}
+						thumbnail={meal.strMealThumb}
+						name={meal.strMeal}
+						area={meal.strArea}
+					/>
+				)
+			}
+		}
 	)
 
 	return (
-		<>
-			<Filter categories={categories} query={query} setQuery={setQuery} />
-			<section className="results">
-				{meals.length ? renderResults : 'loading'}
+		<div className="Results">
+			<section>
+				<h1>{param} Recipes</h1>
+				<search>
+					<input
+						onChange={(e) => handleChange(e)}
+						type="search"
+						placeholder="filter by name"
+						value={filter}
+					/>
+				</search>
 			</section>
-		</>
+			{/* <Filter categories={categories} query={query} setQuery={setQuery} /> */}
+			<section className="results">
+				{Array.isArray(meals) ? renderResults : 'no results found'}
+			</section>
+		</div>
 	)
 }
 
-export default Home
+export default Results

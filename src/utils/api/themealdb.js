@@ -9,7 +9,7 @@ const fetchData = async (params) => {
         const data = await response.json()
         return data
     } catch (err) {
-        console.log(err)
+        return err
     }
 }
 
@@ -17,13 +17,24 @@ export default {
     searchMeals: async (query, cb) => {
         const data = await fetchData(`/search.php?s=${query}`)
         return cb(data.meals)
+    },  
+    // www.themealdb.com/api/json/v1/1/filter.php?c=Seafood
+    filterByCategory: async (query, cb) => {
+        const data = await fetchData(`/filter.php?c=${query}`)
+        return cb(data.meals)
     },
-    findMeal: async (id, detailsCB, ingredientsCB) => {
+    // www.themealdb.com/api/json/v1/1/filter.php?a=Canadian
+    filterByArea: async (query, cb) => {
+        const data = await fetchData(`/filter.php?a=${query}`)
+        return cb(data.meals)
+    },
+    
+    lookupMeal: async (id, detailsCB, ingredientsCB) => {
         const data = await fetchData(`/lookup.php?i=${id}`)
-        console.log(data)
+        console.log(data.meals[0])
         const result = data.meals[0]
         detailsCB(result)
-        // ingredients
+        // convert ingredients and measures into array, then pass to other state
         const ingredients = []
         for (const key in result) {
             const ingredientKey = 'strIngredient'
@@ -38,12 +49,12 @@ export default {
         console.log(ingredients)
         return
     },
-    getCategories: async (cb) => {
+    listCategories: async (cb) => {
         const data = await fetchData(`/list.php?c=list`)
         console.log(data)
         return cb(data.meals)
     },
-    getAreas: async (cb) => {
+    listAreas: async (cb) => {
         const data = await fetchData(`/list.php?a=list`)
         console.log(data)
         return cb(data.meals)
