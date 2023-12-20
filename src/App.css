@@ -73,19 +73,31 @@
 	text-align: center;
 }
 
-.results {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 2rem;
-
-	& > * {
-		text-decoration: none;
-		box-shadow: 1px 1px 4px color-mix(in srgb, black 50%, transparent);
-		color: var(--dark);
-		background: var(--light);
-		width: 200px;
+.Results {
+	& > section:first-of-type {
 		display: flex;
-		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+	}
+	& .results {
+		display: flex;
+		flex-wrap: wrap;
+		place-items: center;
+		gap: 2rem;
+
+	}
+}
+
+.Polaroid {
+	text-decoration: none;
+	box-shadow: 1px 1px 4px color-mix(in srgb, black 50%, transparent);
+	color: var(--dark);
+	background: var(--light);
+	width: 200px;
+	display: flex;
+	flex-direction: column;
+	& div {
+		padding: .5rem;
 	}
 }
 

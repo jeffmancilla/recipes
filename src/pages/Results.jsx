@@ -58,26 +58,22 @@
 import { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import themealdb from '../utils/api/themealdb'
-// import Filter from '../components/Filter'
 import Polaroid from '../components/Polaroid'
 
 const Results = () => {
 	const [meals, setMeals] = useState([])
-	// const [categories, setCategories] = useState([])
-	// const [query, setQuery] = useState('')
-	const {param} = useParams()
+	const [filter, setFilter] = useState('')
+	const { param } = useParams()
 
-	let {pathname} = useLocation()
+	let { pathname } = useLocation()
 
 	useEffect(() => {
-		console.log(pathname)
+		setFilter('')
 		switch (pathname) {
 			case `/cuisine/${param}`:
-				console.log('cuisine')
 				themealdb.filterByArea(param, setMeals)
 				break
 			case `/category/${param}`:
-				console.log('category')
 				themealdb.filterByCategory(param, setMeals)
 				break
 			default:
@@ -85,9 +81,9 @@ const Results = () => {
 		}
 	}, [pathname, param])
 
-	// useEffect(() => {
-	// 	themealdb.searchMeals(query, setMeals)
-	// }, [query])
+	const handleChange = (e) => {
+		setFilter(e.target.value)
+	}
 
 	const renderResults = meals?.map(
 		/**
@@ -95,19 +91,34 @@ const Results = () => {
 		 * @param {Meal} meal
 		 * @returns
 		 */
-		(meal) => (
-			<Polaroid
-				key={meal.idMeal}
-				id={meal.idMeal}
-				thumbnail={meal.strMealThumb}
-				name={meal.strMeal}
-				area={meal.strArea}
-			/>
-		)
+		(meal) => {
+			if (meal.strMeal.toLowerCase().includes(filter.toLowerCase())) {
+				return (
+					<Polaroid
+						key={meal.idMeal}
+						id={meal.idMeal}
+						thumbnail={meal.strMealThumb}
+						name={meal.strMeal}
+						area={meal.strArea}
+					/>
+				)
+			}
+		}
 	)
 
 	return (
-		<div className="Home">
+		<div className="Results">
+			<section>
+				<h1>{param} Recipes</h1>
+				<search>
+					<input
+						onChange={(e) => handleChange(e)}
+						type="search"
+						placeholder="filter by name"
+						value={filter}
+					/>
+				</search>
+			</section>
 			{/* <Filter categories={categories} query={query} setQuery={setQuery} /> */}
 			<section className="results">
 				{Array.isArray(meals) ? renderResults : 'no results found'}

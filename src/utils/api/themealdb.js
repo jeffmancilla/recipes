@@ -21,22 +21,20 @@ export default {
     // www.themealdb.com/api/json/v1/1/filter.php?c=Seafood
     filterByCategory: async (query, cb) => {
         const data = await fetchData(`/filter.php?c=${query}`)
-        console.log(data)
         return cb(data.meals)
     },
     // www.themealdb.com/api/json/v1/1/filter.php?a=Canadian
     filterByArea: async (query, cb) => {
         const data = await fetchData(`/filter.php?a=${query}`)
-        console.log(data)
         return cb(data.meals)
     },
     
     lookupMeal: async (id, detailsCB, ingredientsCB) => {
         const data = await fetchData(`/lookup.php?i=${id}`)
-        console.log(data)
+        console.log(data.meals[0])
         const result = data.meals[0]
         detailsCB(result)
-        // ingredients
+        // convert ingredients and measures into array, then pass to other state
         const ingredients = []
         for (const key in result) {
             const ingredientKey = 'strIngredient'
