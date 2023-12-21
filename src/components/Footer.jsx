@@ -3,8 +3,9 @@ import viteLogo from '/vite.svg'
 
 const Footer = () => {
 	return (
-		<footer>
-			Built with <img src={viteLogo} className="logo" alt="Vite logo" /> +
+		<footer className="Footer">
+			Built with <img src={viteLogo} className="logo" alt="Vite logo" />
+			{' + '}
 			<img src={reactLogo} className="logo react" alt="React logo" />
 		</footer>
 	)

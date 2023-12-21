@@ -1,8 +1,8 @@
 :root {
-	--light: #ffffffcc;
+	--light: #fafafa;
 	--dark: #222222;
-	/*flat ui v2 french https://flatuicolors.com/palette/fr */
-	--accent: #e58e26;
+	/*flat ui https://flatuicolors.com */
+	--accent: #ff6348;
 	
 	--classical-humanist: Optima, Candara, 'Noto Sans', source-sans-pro,
 	sans-serif;
@@ -26,6 +26,9 @@
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	
+	overflow: auto;
+	scrollbar-gutter: stable;
 }
 
 @media (prefers-color-scheme: light) {

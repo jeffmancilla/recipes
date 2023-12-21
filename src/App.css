@@ -1,36 +1,26 @@
 #root {
-	scrollbar-gutter: stable;
-
 	background: var(--background);
 	width: min(100vw, 90ch);
 	height: 100lvh;
 	margin: auto;
-	padding: 2rem;
+	padding: 1rem 2rem;
 
 	display: flex;
 	flex-direction: column;
-	align-items: stretch;
 	gap: 1rem;
-
-	& header {
-		& a,
-		span {
-			color: var(--text);
-			text-decoration: none;
-			opacity: 0.8;
-
-			&:hover {
-				opacity: 1;
-			}
-		}
-	}
 
 	& main {
 		flex-grow: 1;
 	}
-	& footer {
-		align-self: center;
-		opacity: 0.5;
+	& a {
+		color: var(--accent);
+		font-weight: 600;
+		&:visited {
+			color: color-mix(in srgb, var(--accent) 50%, var(--text));
+		}
+		&:hover {
+			color: color-mix(in srgb, var(--accent) 50%, var(--background));
+		}
 	}
 }
 
@@ -39,20 +29,51 @@
 		list-style: none;
 		padding-left: 0;
 	}
-	& nav {
+	& nav#primary {
 		display: flex;
-		align-items: center;
+		justify-content: space-between;
 		flex-wrap: wrap;
 		gap: 1rem;
 
-		& > :first-child {
-			flex-grow: 1;
-		}
-		& > * {
+		& > ul {
 			display: flex;
 			align-items: center;
-			gap: 1.5rem;
+			flex-wrap: wrap;
+			gap: 1rem;
 		}
+	}
+	& nav:not(#primary) ul {
+		display: flex;
+		flex-direction: column;
+
+		padding: 0.5rem 1rem;
+
+		box-shadow: var(--shadow-dark);
+		background-color: color-mix(in srgb, var(--background) 97%, white);
+	}
+	& button {
+		all: unset;
+	}
+	& a,
+	button {
+		font-weight: 600;
+		color: var(--text);
+		text-decoration: none;
+		opacity: 0.75;
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+}
+
+.Footer {
+	justify-self: flex-end;
+	align-self: center;
+	font-size: 0.75rem;
+	opacity: 0.5;
+	& img {
+		width: 0.67rem;
 	}
 }
 
@@ -62,13 +83,13 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		gap: .5rem;
-		padding: .5rem;
-		
+		gap: 0.5rem;
+		padding: 0.5rem;
+
 		height: 2rem;
 		border-radius: 1rem;
 		background-color: color-mix(in srgb, currentColor 3%, transparent);
-		
+
 		& svg {
 			opacity: 0.5;
 		}
@@ -85,21 +106,44 @@
 			}
 		}
 	}
+	& #recipe > ul > li {
+		padding: 0.5rem;
+		& img {
+			height: 1.5rem;
+			margin-right: 1ch;
+		}
+	}
 }
 
 .Results {
-	& > section:first-of-type {
+	& > :first-child {
 		display: flex;
 		justify-content: space-between;
 		flex-wrap: wrap;
 		align-items: center;
 		margin-bottom: 1rem;
+		& input {
+			all: unset;
+			font-size: 0.8rem;
+			width: 25ch;
+			text-align: right;
+			border-radius: 1rem;
+			&:focus {
+				box-shadow: var(--shadow);
+			}
+			& :not(:empty) {
+				box-shadow: var(--shadow);
+			}
+		}
 	}
 	& .results {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
 		gap: 2rem;
+		& > * {
+			width: max(30%, 200px);
+		}
 	}
 }
 
@@ -129,7 +173,6 @@
 	box-shadow: var(--shadow);
 	color: var(--dark);
 	background: var(--light);
-	width: 200px;
 	display: flex;
 	flex-direction: column;
 	& div {
@@ -137,8 +180,10 @@
 	}
 }
 
+/* UTILITIES */
+
 /* match svg height to get the darned svg inside of it to center */
-.svg-center {
+.center-svg {
 	height: var(--svg-height);
 }
 
@@ -150,7 +195,24 @@
 	opacity: 1;
 }
 
-dialog,
+.dropdown {
+	position: relative;
+	display: inline-block;
+
+	& > .dropdown-content {
+		display: none;
+		position: absolute;
+		z-index: 1;
+	}
+	&:hover .dropdown-content {
+		display: block;
+		animation-name: fadeIn;
+		animation-duration: 0.5s;
+	}
+}
+
+/* aNiMe */
+
 .Polaroid,
 .Recipe {
 	animation-name: fadeIn;
