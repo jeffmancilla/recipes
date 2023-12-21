@@ -1,4 +1,6 @@
 #root {
+	scrollbar-gutter: stable;
+
 	background: var(--background);
 	width: min(100vw, 90ch);
 	height: 100lvh;
@@ -30,11 +32,6 @@
 		align-self: center;
 		opacity: 0.5;
 	}
-}
-
-body {
-	margin: 0;
-	background-color: color-mix(in srgb, black 3%, transparent);
 }
 
 .Header {
@@ -116,7 +113,6 @@ body {
 	/* 16:9 shenanigans */
 	& .video {
 		position: relative;
-		width: 100%;
 		padding-top: 56.25%;
 		& iframe {
 			position: absolute;
