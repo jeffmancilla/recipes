@@ -44,7 +44,7 @@ const Header = () => {
 							width="24"
 							height="24"
 							viewBox="0 0 24 24"
-							className='accent opaque'
+							className='accent'
 						>
 							<path
 								fill="currentColor"

@@ -70,15 +70,15 @@ const Results = () => {
 	useEffect(() => {
 		switch (pathname) {
 			case `/cuisine/${param}`:
-				themealdb.filterByArea(param, setMeals)
+				themealdb.filterByArea(param, setMeals, setFilter)
 				break
 			case `/category/${param}`:
 				themealdb.filterByCategory(param, setMeals, setFilter)
 				break
 			default:
+				// redirect user to error page? to the homepage + toast?
 				console.log('no cases met')
 		}
-		// setFilter('')
 	}, [pathname, param])
 
 	const handleChange = (e) => {
