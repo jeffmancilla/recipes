@@ -83,8 +83,8 @@ const Recipe = () => {
 		console.log(`https://www.youtube.com/embed/_${embedCode}`)
 		return (
 			<iframe
-				width="560"
-				height="315"
+				width="100%"
+				height="100%"
 				src={`https://www.youtube.com/embed/${embedCode}`}
 				title="YouTube video player"
 				// frameBorder is deprecated, rip
@@ -114,8 +114,8 @@ const Recipe = () => {
 					</div>
 				))}
 			</section>
-			<section>{meal.strYoutube ? renderYTEmbed() : null}</section>
-			<section>
+			<section className="video">{meal.strYoutube ? renderYTEmbed() : null}</section>
+			<section className="instructions">
 				<h2>Instructions</h2>
 				<p>{meal.strInstructions}</p>
 			</section>

@@ -15,18 +15,20 @@ const fetchData = async (params) => {
 }
 
 export default {
-    searchMeals: async (query, cb) => {
+    searchMeals: async (query, mealsCB) => {
         const data = await fetchData(`/search.php?s=${query}`)
-        data.meals ? cb(data.meals) : data
+        // is this ternary a way to pass errors? 
+        data.meals ? mealsCB(data.meals) : data
     },  
-    filterByCategory: async (query, cb, filterCB) => {
+    filterByCategory: async (query, mealsCB, filterCB) => {
         const data = await fetchData(`/filter.php?c=${query}`)
         filterCB('')
-        return cb(data.meals)
+        return mealsCB(data.meals)
     },
-    filterByArea: async (query, cb) => {
+    filterByArea: async (query, mealsCB, filterCB) => {
         const data = await fetchData(`/filter.php?a=${query}`)
-        return cb(data.meals)
+        filterCB('')
+        return mealsCB(data.meals)
     },
     lookupMeal: async (id, detailsCB, ingredientsCB) => {
         const data = await fetchData(`/lookup.php?i=${id}`)
@@ -44,7 +46,6 @@ export default {
             }
         }
         ingredientsCB(ingredients)
-        console.log(ingredients)
         return
     },
     listCategories: async (cb) => {

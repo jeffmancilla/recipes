@@ -9,10 +9,6 @@
 	gap: 1rem;
 
 	& header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-
 		& a,
 		span {
 			color: var(--text);
@@ -22,41 +18,6 @@
 			&:hover {
 				opacity: 1;
 			}
-		}
-
-		& ul {
-			list-style: none;
-			padding-left: 0;
-		}
-
-		& nav {
-			& ul {
-				display: flex;
-				gap: 1rem;
-				& li:first-of-type {
-					font-weight: 600;
-					opacity: 1;
-				}
-			}
-		}
-	}
-	& dialog {
-		position: absolute;
-		margin: 0;
-		top: 4rem;
-		&#categoryDialog {
-
-			left: 20vw;
-		}
-		&#areaDialog {
-			left: 25vw;
-
-		}
-		& ul {
-			flex-wrap: wrap;
-			flex-direction: column;
-			height: 25ch;
-			width: 100%;
 		}
 	}
 
@@ -69,8 +30,70 @@
 	}
 }
 
+.Header {
+	& ul {
+		list-style: none;
+		padding-left: 0;
+	}
+	& nav {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
+		& > * {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 1.5rem;
+		}
+	}
+}
+& dialog {
+	position: absolute;
+	margin: 0;
+	top: 0;
+	right: 0;
+
+	&#categoryDialog {
+		left: 20vw;
+	}
+	&#areaDialog {
+		left: 25vw;
+	}
+	& ul {
+		flex-wrap: wrap;
+		flex-direction: column;
+		width: 100%;
+	}
+}
+
 .Filter {
-	text-align: center;
+	& search {
+		position: relative;
+		width: 30ch;
+		background-color: color-mix(in srgb, currentColor 3%, transparent);
+		
+		& svg {
+			opacity: 0.5;
+		}
+
+		&:hover {
+			border-radius: 0.25rem;
+			box-shadow: 0 0 2px currentColor;
+		}
+		& input {
+			position: absolute;
+			top: 2px;
+			left: 0;
+			width: 100%;
+			padding-inline-start: 2rem;
+			background: none;
+			border: none;
+			&:focus {
+				outline: none;
+			}
+		}
+	}
 }
 
 .Results {
@@ -84,7 +107,28 @@
 		flex-wrap: wrap;
 		place-items: center;
 		gap: 2rem;
+	}
+}
 
+.Recipe {
+	display: grid;
+	gap: 1.5rem;
+
+	& img {
+		width: 100%;
+	}
+	/* 16:9 shenanigans */
+	& .video {
+		position: relative;
+		width: 100%;
+		padding-top: 56.25%;
+		& iframe {
+			position: absolute;
+			top: 0;
+		}
+	}
+	& .instructions > p {
+		font-size: 1.25rem;
 	}
 }
 
@@ -97,15 +141,20 @@
 	display: flex;
 	flex-direction: column;
 	& div {
-		padding: .5rem;
+		padding: 0.5rem;
 	}
+}
+
+/* match svg height to get the darned svg inside of it to center */
+.svg-center {
+	height: var(--svg-height);
 }
 
 dialog,
 .Polaroid,
 .Recipe {
 	animation-name: fadeIn;
-	animation-duration: .5s;
+	animation-duration: 0.5s;
 }
 
 @keyframes fadeIn {

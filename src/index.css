@@ -7,6 +7,8 @@
 
   --text: var(--light);
   --background: var(--dark);
+
+  --svg-height: 24px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -14,6 +16,10 @@
 		--text: var(--dark);
 		--background: var(--light);
 	}
+}
+
+* {
+	box-sizing: border-box;
 }
 
 html {
@@ -31,4 +37,6 @@ html {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-
+h1,h2,h3,p {
+	margin: 0;
+}
