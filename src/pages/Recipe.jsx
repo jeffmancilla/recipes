@@ -114,13 +114,13 @@ const Recipe = () => {
 					</div>
 				))}
 			</section>
-			<section className="video">
-				{meal.strYoutube ? renderYTEmbed() : null}
-			</section>
 			<section className="instructions">
 				<h2>Instructions</h2>
 				<p>{meal.strInstructions}</p>
 			</section>
+			<section className="video">
+				{meal.strYoutube ? renderYTEmbed() : null}
+			</section>{' '}
 		</div>
 	)
 }
