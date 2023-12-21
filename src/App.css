@@ -1,7 +1,9 @@
 #root {
-	width: min(90vw, 80ch);
+	background: var(--background);
+	width: min(100vw, 90ch);
 	height: 100lvh;
 	margin: auto;
+	padding: 2rem;
 
 	display: flex;
 	flex-direction: column;
@@ -13,7 +15,7 @@
 		span {
 			color: var(--text);
 			text-decoration: none;
-			opacity: 0.75;
+			opacity: 0.8;
 
 			&:hover {
 				opacity: 1;
@@ -30,6 +32,11 @@
 	}
 }
 
+body {
+	margin: 0;
+	background-color: color-mix(in srgb, black 3%, transparent);
+}
+
 .Header {
 	& ul {
 		list-style: none;
@@ -37,40 +44,32 @@
 	}
 	& nav {
 		display: flex;
-		justify-content: space-between;
 		align-items: center;
 		flex-wrap: wrap;
+		gap: 1rem;
+
+		& > :first-child {
+			flex-grow: 1;
+		}
 		& > * {
 			display: flex;
-			justify-content: space-between;
 			align-items: center;
 			gap: 1.5rem;
 		}
 	}
 }
-& dialog {
-	position: absolute;
-	margin: 0;
-	top: 0;
-	right: 0;
-
-	&#categoryDialog {
-		left: 20vw;
-	}
-	&#areaDialog {
-		left: 25vw;
-	}
-	& ul {
-		flex-wrap: wrap;
-		flex-direction: column;
-		width: 100%;
-	}
-}
 
 .Filter {
+	width: min(30ch, 100%);
 	& search {
-		position: relative;
-		width: 30ch;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: .5rem;
+		padding: .5rem;
+		
+		height: 2rem;
+		border-radius: 1rem;
 		background-color: color-mix(in srgb, currentColor 3%, transparent);
 		
 		& svg {
@@ -78,15 +77,10 @@
 		}
 
 		&:hover {
-			border-radius: 0.25rem;
-			box-shadow: 0 0 2px currentColor;
+			box-shadow: var(--shadow);
 		}
 		& input {
-			position: absolute;
-			top: 2px;
-			left: 0;
-			width: 100%;
-			padding-inline-start: 2rem;
+			flex-grow: 1;
 			background: none;
 			border: none;
 			&:focus {
@@ -100,12 +94,14 @@
 	& > section:first-of-type {
 		display: flex;
 		justify-content: space-between;
+		flex-wrap: wrap;
 		align-items: center;
+		margin-bottom: 1rem;
 	}
 	& .results {
 		display: flex;
 		flex-wrap: wrap;
-		place-items: center;
+		justify-content: center;
 		gap: 2rem;
 	}
 }
@@ -134,7 +130,7 @@
 
 .Polaroid {
 	text-decoration: none;
-	box-shadow: 1px 1px 4px color-mix(in srgb, black 50%, transparent);
+	box-shadow: var(--shadow);
 	color: var(--dark);
 	background: var(--light);
 	width: 200px;
@@ -150,6 +146,14 @@
 	height: var(--svg-height);
 }
 
+.accent {
+	color: var(--accent);
+}
+
+.opaque {
+	opacity: 1;
+}
+
 dialog,
 .Polaroid,
 .Recipe {
@@ -163,5 +167,10 @@ dialog,
 	}
 	to {
 		opacity: 1;
+	}
+}
+@keyframes highlight {
+	100% {
+		box-shadow: var(--shadow-dark);
 	}
 }

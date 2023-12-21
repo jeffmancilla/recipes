@@ -97,8 +97,8 @@ const Recipe = () => {
 
 	return (
 		<div className="Recipe">
+			<h1>{meal.strMeal}</h1>
 			<section>
-				<h1>{meal.strMeal}</h1>
 				<img src={meal.strMealThumb} />
 				{/* worth doing pills for these meal tags? data isnt very consistent with giving quality or a value for that matter :(  */}
 				<span>{meal.strTags}</span>
@@ -114,7 +114,9 @@ const Recipe = () => {
 					</div>
 				))}
 			</section>
-			<section className="video">{meal.strYoutube ? renderYTEmbed() : null}</section>
+			<section className="video">
+				{meal.strYoutube ? renderYTEmbed() : null}
+			</section>
 			<section className="instructions">
 				<h2>Instructions</h2>
 				<p>{meal.strInstructions}</p>
