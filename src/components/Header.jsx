@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import themealdb from '../utils/api/themealdb'
 import Filter from './Filter'
+import MenuIntroduction from './MenuIntroduction'
+import AutocompleteIntroduction from './Autocomplete'
 
 const Header = () => {
 	const [categories, setCategories] = useState([])
@@ -78,6 +80,8 @@ const Header = () => {
 					</li>
 				</ul>
 			</nav>
+			<MenuIntroduction />
+			<AutocompleteIntroduction />
 		</header>
 	)
 }
