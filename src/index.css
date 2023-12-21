@@ -1,26 +1,23 @@
+/* variables */
+
 :root {
 	--light: #ffffffcc;
 	--dark: #222222;
-  
+	/*flat ui v2 french https://flatuicolors.com/palette/fr */
+	--accent: #e58e26;
+	
 	--classical-humanist: Optima, Candara, 'Noto Sans', source-sans-pro,
-  sans-serif;
-
-  --text: var(--light);
-  --background: var(--dark);
-
-  --svg-height: 24px;
+	sans-serif;
+	
+	--text: var(--light);
+	--background: var(--dark);
+	
+	--svg-height: 24px;
+	--shadow: 1px 1px 5px #00000033;
+	--shadow-dark: 1px 1px 5px #00000066;
 }
 
-@media (prefers-color-scheme: light) {
-	:root {
-		--text: var(--dark);
-		--background: var(--light);
-	}
-}
-
-* {
-	box-sizing: border-box;
-}
+/* global stuff */
 
 html {
 	color: var(--text);
@@ -37,6 +34,24 @@ html {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-h1,h2,h3,p {
+@media (prefers-color-scheme: light) {
+	:root {
+		--text: var(--dark);
+		--background: var(--light);
+	}
+}
+
+/* resets */
+
+* {
+	box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+ul {
 	margin: 0;
 }
