@@ -72,9 +72,7 @@ const Recipe = () => {
 	}, [id])
 
 	const renderYTEmbed = () => {
-		console.log(meal.strYoutube)
 		let embedCode = meal.strYoutube.split('v=')[1]
-		console.log(`https://www.youtube.com/embed/_${embedCode}`)
 		return (
 			<iframe
 				width="100%"
@@ -91,11 +89,11 @@ const Recipe = () => {
 
 	return (
 		<div className="Recipe">
-			<h1>{meal.strMeal}</h1>
-			<section>
-				<img src={meal.strMealThumb} />
-				{/* worth doing pills for these meal tags? data isnt very consistent with giving quality or a value for that matter :(  */}
-				{/* <span>{meal.strTags}</span> */}
+			<section style={{ backgroundImage: `url(${meal.strMealThumb})` }}>
+				<div>
+					<h1>{meal.strMeal}</h1>
+					<span>{meal.strArea}</span>
+				</div>
 			</section>
 			<section>
 				<h2>Ingredients</h2>
