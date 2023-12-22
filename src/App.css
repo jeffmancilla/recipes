@@ -187,6 +187,7 @@
 	align-self: center;
 	font-size: 0.75rem;
 	opacity: 0.5;
+	
 	& img {
 		width: 0.67rem;
 	}

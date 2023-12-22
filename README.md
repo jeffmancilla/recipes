@@ -18,3 +18,7 @@ A recipe catalog - minimally designed, fast, and easy to follow: [exquisite-klep
 - Save to favorites functionality (localStorage?)
 - Backend, authentication, recipe CRUD
 - Refactor with Svelte/Astro to make the site static (and blazingly fast)
+- style for mobile/tablets: some ideas:
+  - timer as a toast component
+  - ingredients contained in a section/aside and sticky to the left/right of viewport
+  - video minimizes to small player on the corner when out of focus
