@@ -1,8 +1,17 @@
-# React + Vite
+# Recipes
+A catalog of recipes - minimally designed, and easy to follow. 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[exquisite-klepon-51cda7.netlify.app](https://exquisite-klepon-51cda7.netlify.app)
 
-Currently, two official plugins are available:
+## Built with
+- Vite
+- React
+- React Router
+- TheMealDB API
+- Netlify
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Future Enhancements
+
+- Authentication, save to favorites
+- Timer function to help track cook times
+- Share button, QR code to make sharing recipes easy
