@@ -19,10 +19,49 @@
 .Home {
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
 
 	& section {
-		background-color: salmon;
+		border-bottom: 1px dotted color-mix(in srgb, var(--text) 25%, transparent);
+		padding-block: 2rem;
+	}
+
+	& .hero {
+		display: flex;
+		align-items: center;
+		background-image: url(/hero.webp);
+		background-size: cover;
+
+		font-size: 4rem;
+		text-transform: uppercase;
+		text-shadow: color-mix(in srgb, white 100%, transparent) 0 0 8px;
+		line-height: 1;
+		
+		height: 480px;
+		padding: 1rem;
+		padding-right: 10vw;
+	}
+
+	& .random {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		align-items: center;
+		
+		& :first-child {
+			text-decoration: none;
+			color: var(--text);
+
+			& span {
+				text-transform: uppercase;
+			}
+			& h2 {
+				font-size: 2rem;
+			}
+		}
+
+		& :last-child {
+			width: 320px;
+		}
 	}
 }
 

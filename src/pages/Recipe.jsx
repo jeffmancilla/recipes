@@ -55,12 +55,6 @@
  * @property {string=} strYoutube: "https://www.youtube.com/watch?v=fFLn1h80AGQ"
  */
 
-/**
- * @typedef {Object} Ingredients
- * @property {string} name
- * @property {string} measure
- */
-
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import theMealDB from '../utils/api/themealdb'
