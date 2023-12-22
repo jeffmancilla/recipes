@@ -1,5 +1,5 @@
 # Recipes
-A catalog of recipes - minimally designed, fast, and easy to follow. 
+A recipe catalog - minimally designed, fast, and easy to follow. 
 
 ![ezgif com-video-to-gif-converted](https://github.com/jeffmancilla/recipes/assets/54294370/dc5de32d-9a27-49cb-a534-c5925ef04406)
 
