@@ -32,8 +32,8 @@
 		background-size: cover;
 
 		font-size: 4rem;
-		text-transform: uppercase;
-		text-shadow: white 0 0 1rem;
+		color: white;
+		text-shadow: black 0 0 1rem;
 		line-height: 1;
 
 		height: 480px;
@@ -50,6 +50,7 @@
 		& :first-child {
 			text-decoration: none;
 			color: var(--text);
+			width: 320px;
 
 			& span {
 				text-transform: uppercase;

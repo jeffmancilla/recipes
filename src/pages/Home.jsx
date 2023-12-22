@@ -69,7 +69,7 @@ const Home = () => {
 	}, [])
 	return (
 		<div className="Home">
-			<section><div className="hero"><h1>Cook your next meal.</h1></div></section>
+			<section><div className="hero"><h1>Make your meals from scratch.</h1></div></section>
 			<section>
 				<div className="random">
 					<div>
