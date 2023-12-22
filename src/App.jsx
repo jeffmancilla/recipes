@@ -4,6 +4,7 @@ import Footer from './components/Footer'
 import { Route, Routes } from 'react-router'
 import Results from './pages/Results'
 import Recipe from './pages/Recipe'
+import Home from './pages/Home'
 
 function App() {
 	return (
@@ -11,7 +12,7 @@ function App() {
 			<Header />
 			<main>
 				<Routes>
-					<Route path="/" element={<Results />} />
+					<Route path="/" element={<Home />} />
 					<Route path="/recipe/:id" element={<Recipe />} />
 					<Route path="/category/:param" element={<Results />} />
 					<Route path="/cuisine/:param" element={<Results />} />

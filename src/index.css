@@ -38,6 +38,17 @@
 	}
 }
 
+a {
+	color: var(--accent);
+	font-weight: 600;
+	&:visited {
+		color: color-mix(in srgb, var(--accent) 50%, var(--text));
+	}
+	&:hover {
+		text-shadow: color-mix(in srgb, currentColor 50%, transparent) 0 0 1px;
+	}
+}
+
 /* resets */
 
 * {

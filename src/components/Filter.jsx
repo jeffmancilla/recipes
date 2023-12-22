@@ -57,21 +57,30 @@
 
 import { useEffect, useState } from 'react'
 import themealdb from '../utils/api/themealdb'
-import { Link, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Filter = () => {
 	const [meals, setMeals] = useState([])
 	const [query, setQuery] = useState('')
 
-	const location = useLocation()
-
 	useEffect(() => {
-		setQuery('')
-	}, [location])
+		if (query) {
+			themealdb.searchMeals(query, setMeals)
+		} else {
+			setMeals([])
+		}
+	}, [query])
+
+	const navigate = useNavigate()
 
 	const handleChange = (e) => {
 		setQuery(e.target.value)
-		themealdb.searchMeals(query, setMeals)
+	}
+
+	const handleClick = (id) => {
+		navigate(`/recipe/${id}`)
+		setMeals([])
+		setQuery('')
 	}
 
 	const recipeLinks = meals?.map(
@@ -82,13 +91,9 @@ const Filter = () => {
 		 * @returns
 		 */
 		(meal, idx) => (
-			<li key={idx}>
-				<Link to={`/recipe/${meal.idMeal}`}>
-					<div>
-						<img src={meal.strMealThumb} />
-						<span>{meal.strMeal}</span>
-					</div>
-				</Link>
+			<li key={idx} onClick={() => handleClick(meal.idMeal)}>
+				<a>{meal.strMeal}</a>
+				<img src={meal.strMealThumb} />
 			</li>
 		)
 	)
@@ -114,9 +119,9 @@ const Filter = () => {
 					value={query}
 				></input>
 			</search>
-			<nav className="dropdown-content" aria-label="meal" id="recipe">
+			<div className="dropdown-content" aria-label="meal" id="recipe">
 				<ul>{recipeLinks}</ul>
-			</nav>
+			</div>
 		</div>
 	)
 }
