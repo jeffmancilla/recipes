@@ -17,9 +17,12 @@ const fetchData = async (params) => {
 export default {
     searchMeals: async (query, mealsCB) => {
         const data = await fetchData(`/search.php?s=${query}`)
-        // is this ternary a way to pass errors? 
-        data.meals ? mealsCB(data.meals) : data
-    },  
+        return mealsCB(data.meals)
+    },
+    randomMeal: async (mealCB) => {
+        const data = await fetchData(`/random.php`)
+        return mealCB(data.meals[0])
+    },
     filterByCategory: async (query, mealsCB, filterCB) => {
         const data = await fetchData(`/filter.php?c=${query}`)
         filterCB('')
