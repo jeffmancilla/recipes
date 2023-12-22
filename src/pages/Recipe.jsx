@@ -101,7 +101,7 @@ const Recipe = () => {
 			<section>
 				<img src={meal.strMealThumb} />
 				{/* worth doing pills for these meal tags? data isnt very consistent with giving quality or a value for that matter :(  */}
-				<span>{meal.strTags}</span>
+				{/* <span>{meal.strTags}</span> */}
 			</section>
 			<section>
 				<h2>Ingredients</h2>
@@ -109,7 +109,7 @@ const Recipe = () => {
 					<div key={idx}>
 						<label htmlFor={`ingredient${idx}`}>
 							<input type="checkbox" id={`ingredient${idx}`} />
-							{ingredient.measure} {ingredient.name}
+							{ingredient.measure} <strong>{ingredient.name}</strong>
 						</label>
 					</div>
 				))}
